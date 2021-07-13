@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This is a react application which reads data from sample data.json containing assignee and number of tickets like bug/user stories assigned.
 
-This project use chartlist and react-chartlist to render graph with Assignee and No.Of tickets assigned. It also provides an option to filter the records based on status/type/priority.
+This project use chartlist and react-chartlist to render graph No.Of tickets vs assignee. It also provides an option to filter the records based on status/type/priority.
 
 Use of Redux
 
