@@ -5,6 +5,8 @@ This is a react application which reads data from sample data.json containing as
 
 This project use chartlist and react-chartlist to render graph with Assignee and No.Of tickets assigned. It also provides an option to filter the records based on status/type/priority.
 
+Use of Redux
+
 ## Available Scripts
 
 In the project directory, you can run:
