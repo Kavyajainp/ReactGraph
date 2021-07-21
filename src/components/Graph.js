@@ -4,14 +4,8 @@ import ChartistGraph from 'react-chartist';
 import {useSelector, useDispatch} from 'react-redux'
 
 const Graph = () => { 
-    const dispatch = useDispatch()
-
     const reducerState = useSelector((state) => state.counterReducer);
-    const {filterBy, filterSelectedValue} = reducerState;
-   
-    const listOfStatus = [...new Set(data.records.map(item => item.status) )]
-    const listOfType = [...new Set(data.records.map(item => item.issue_type) )]
-    const listOfPriorities = [...new Set(data.records.map(item => item.priority) )]
+    const {statusFilter,typeFilter,priorityFilter} = reducerState;
    
     const xAxis = [...new Set(data.records.map(item => item.assignee))];
 
@@ -21,18 +15,20 @@ const Graph = () => {
          let count = 0
          let filteredItem = []
          xAxis.forEach(element => {
-            if(filterSelectedValue != ""){
-                switch(filterBy){
-                    case "status" : 
-                            filteredItem = data.records.filter(item => item.assignee === element && filterSelectedValue.indexOf(item.status) >-1)
-                            break;
-                    case "type" : 
-                            filteredItem = data.records.filter(item => item.assignee === element && filterSelectedValue.indexOf(item.issue_type) >-1)
-                            break;  
-                    case "priority" : 
-                            filteredItem = data.records.filter(item => item.assignee === element && filterSelectedValue.indexOf(item.priority) >-1)
-                            break; 
-                }
+            if(statusFilter.length > 0 && typeFilter.length > 0 && priorityFilter.length > 0){
+                filteredItem = 
+                data.records.filter(item => item.assignee === element && statusFilter.indexOf(item.status) >-1 && priorityFilter.indexOf(item.priority) >-1 && typeFilter.indexOf(item.issue_type) >-1)
+            }
+            else if(statusFilter.length > 0 && typeFilter.length > 0){
+              filteredItem = 
+                data.records.filter(item => item.assignee === element && statusFilter.indexOf(item.status) >-1 && typeFilter.indexOf(item.issue_type) >-1 )
+            }else if(statusFilter.length > 0 && priorityFilter.length > 0){
+              filteredItem = 
+              data.records.filter(item => item.assignee === element && statusFilter.indexOf(item.status) >-1 && priorityFilter.indexOf(item.priority) >-1 )
+            }
+            else if(typeFilter.length > 0 && priorityFilter.length > 0){
+              filteredItem = 
+              data.records.filter(item => item.assignee === element &&  typeFilter.indexOf(item.issue_type) >-1  && priorityFilter.indexOf(item.priority) >-1 )
             }
             else{
                 filteredItem = data.records.filter(item => item.assignee === element) 
