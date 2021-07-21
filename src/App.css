@@ -6,6 +6,14 @@
   height: 40vmin;
   pointer-events: none;
 }
+.list{
+  width:30%;
+  display: inline-block;
+  vertical-align: top;
+}
+li{list-style: none;font-size:13px;}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
