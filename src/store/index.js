@@ -1,19 +1,28 @@
 import { createStore, combineReducers } from "redux";
 
 
-//const counterReducer = (state = {statusFilter : '',typeFilter:'',priorityFilter:'',},action) =>{
-const counterReducer = (state = {filterBy : "status", filterSelectedValue:""},action) =>{
+const counterReducer = (state = {typeFilter:[],statusFilter:[],priorityFilter:[]},action) =>{
   
-    if(action.type == "filterBy"){
+    if(action.type == "selectedStatusFilterValue"){
         return {
-            filterBy : action.value,
-            filterSelectedValue:""
+           
+            statusFilter: action.value,
+            typeFilter:state.typeFilter,
+            priorityFilter:state.priorityFilter
         }
     }
-    if(action.type == "selectedSubFilterVal"){
+    if(action.type == "selectedTypeFilterValue"){
         return {
-            filterBy : state.filterBy,
-            filterSelectedValue:action.value
+            statusFilter:state.statusFilter,
+            typeFilter: action.value,
+            priorityFilter:state.priorityFilter
+        }
+    }
+    if(action.type == "selectedPriorityFilterValue"){
+        return {
+            statusFilter:state.statusFilter,
+            typeFilter: state.typeFilter,
+            priorityFilter:action.value
         }
     }
   
